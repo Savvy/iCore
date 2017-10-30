@@ -1,0 +1,17 @@
+# MySQL Connection Details
+mysql:
+  hostname: '127.0.0.1'
+  username: 'root'
+  password: ''
+  database: 'core'
+  port: 3306
+
+# General
+spawn:
+  world: Spawn
+  coords:
+    X: 100
+    Y: 100
+    Z: 100
+    P: 0
+    YW: 0
