@@ -4,6 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/**
+ * Used to create tasks or run something async
+ *
+ * @author Majrly
+ * @since 0.0.1
+ */
 public abstract class Task {
 
     private int interval;

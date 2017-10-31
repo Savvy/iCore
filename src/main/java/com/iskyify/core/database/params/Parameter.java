@@ -1,4 +1,4 @@
-package me.majrly.database.params;
+package com.iskyify.core.database.params;
 
 /**
  * Apart of the Database API to set parameters (AKA those little question marks in sql statements)

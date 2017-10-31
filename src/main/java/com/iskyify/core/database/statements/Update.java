@@ -1,4 +1,4 @@
-package me.majrly.database.statements;
+package com.iskyify.core.database.statements;
 
 /**
  * Apart of the Database API to differentiate between various Statements

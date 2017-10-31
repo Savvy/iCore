@@ -15,6 +15,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+/**
+ * Used to load player data
+ *
+ * @author Majrly
+ * @since 0.0.1
+ */
 public class User {
 
     private static final String SELECT = "SELECT * FROM `users` WHERE `id`=?";

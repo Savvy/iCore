@@ -1,4 +1,4 @@
-package me.majrly.database;
+package com.iskyify.core.database;
 
 import lombok.Getter;
 

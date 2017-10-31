@@ -3,11 +3,9 @@ package com.iskyify.core;
 import com.iskyify.core.commands.CommandBase;
 import com.iskyify.core.commands.ServerCommand;
 import com.iskyify.core.listeners.JoinListener;
-import com.iskyify.core.timer.Timer;
 import com.iskyify.core.users.UserManager;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -18,6 +16,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * The Core API
+ *
+ * @author Majrly
+ * @since 0.0.1
+ */
 public class Core extends JavaPlugin {
 
     @Getter
@@ -58,13 +62,13 @@ public class Core extends JavaPlugin {
     }
 
     public void register(Plugin plugin, Listener... listeners) {
-        for (Listener listener: listeners) {
+        for (Listener listener : listeners) {
             Bukkit.getPluginManager().registerEvents(listener, this);
         }
     }
 
-    public void register(Plugin plugin, CommandBase...commands) {
-        for (CommandBase commandBase: commands) {
+    public void register(Plugin plugin, CommandBase... commands) {
+        for (CommandBase commandBase : commands) {
             Core.getInstance().getCommandMap().register(commandBase.getName(), commandBase);
         }
     }

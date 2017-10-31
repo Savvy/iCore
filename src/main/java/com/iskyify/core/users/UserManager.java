@@ -5,6 +5,12 @@ import lombok.Getter;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * Manage {@link User} instances
+ *
+ * @author Majrly
+ * @since 0.0.1
+ */
 public class UserManager {
 
     @Getter

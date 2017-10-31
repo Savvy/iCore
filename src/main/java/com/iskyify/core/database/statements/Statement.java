@@ -1,7 +1,7 @@
-package me.majrly.database.statements;
+package com.iskyify.core.database.statements;
 
+import com.iskyify.core.database.params.Parameter;
 import lombok.Getter;
-import me.majrly.database.params.Parameter;
 
 import java.sql.Blob;
 import java.sql.Date;

@@ -4,6 +4,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/**
+ * Used to time certain tasks, for example a countdown or a cooldown
+ *
+ * @author Majrly
+ * @implNote {@link #onStart()}, {@link #onExecute(int)} and {@link #onEnd()} will be called after you start the task!
+ * @since 0.0.1
+ */
 public abstract class Timer {
 
     private int time;
@@ -34,6 +41,8 @@ public abstract class Timer {
     }
 
     public abstract void onStart();
+
     public abstract void onEnd();
+
     public abstract void onExecute(int time);
 }
