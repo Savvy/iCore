@@ -1,21 +1,18 @@
-package com.iskyify.core.event;
+package com.iskyify.api.event;
 
-import com.iskyify.core.users.User;
+import com.iskyify.api.user.IUser;
 import lombok.Getter;
-import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import java.util.UUID;
 
 public class UserUnloadEvent extends Event {
 
     private static HandlerList handlerList = new HandlerList();
 
     @Getter
-    private User user;
+    private IUser user;
 
-    public UserUnloadEvent(User user) {
+    public UserUnloadEvent(IUser user) {
         this.user = user;
     }
 

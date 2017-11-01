@@ -2,9 +2,9 @@
 mysql:
   hostname: '127.0.0.1'
   username: 'root'
-  password: ''
+  password: 'password'
   database: 'core'
-  port: 3306
+  port: '3306'
 
 # General
 spawn:

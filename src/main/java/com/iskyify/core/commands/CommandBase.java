@@ -1,7 +1,7 @@
 package com.iskyify.core.commands;
 
-import com.iskyify.core.Core;
-import com.iskyify.core.users.User;
+import com.iskyify.api.user.IUser;
+import com.iskyify.api.user.other.UserAdapter;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -13,7 +13,6 @@ public abstract class CommandBase extends Command {
 
     private String name;
     private String permission;
-    private boolean playerOnly;
 
     public CommandBase(String name) {
         this(name, "general.*", "Default Command Description");
@@ -30,7 +29,7 @@ public abstract class CommandBase extends Command {
 
     @Override
     public boolean execute(CommandSender commandSender, String label, String[] args) {
-        if (!(commandSender instanceof Player) && playerOnly) {
+        if (!(commandSender instanceof Player)) {
             commandSender.sendMessage("This is a player-only command!");
             return true;
         } else if (!commandSender.hasPermission(permission)) {
@@ -38,13 +37,13 @@ public abstract class CommandBase extends Command {
             return true;
         }
         Player player = (Player) commandSender;
-        User user = Core.getInstance().getUserManager().getUser(player.getUniqueId());
+        IUser user = UserAdapter.getInstance().get(player.getUniqueId());
         if (user == null) {
-            player.sendMessage(ChatColor.RED + "Couldn't find MySQL Information!");
+            player.sendMessage(ChatColor.RED + "Could not find user data in database.!");
             return true;
         }
         return execute(user, label, args);
     }
 
-    public abstract boolean execute(User user, String label, String[] arguments);
+    public abstract boolean execute(IUser user, String label, String[] arguments);
 }

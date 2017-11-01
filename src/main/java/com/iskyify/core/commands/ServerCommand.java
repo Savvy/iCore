@@ -1,14 +1,7 @@
 package com.iskyify.core.commands;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
-import com.iskyify.core.Core;
-import com.iskyify.core.users.User;
-import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import com.iskyify.api.user.IUser;
+import com.iskyify.api.utils.Utils;
 
 public class ServerCommand extends CommandBase {
 
@@ -16,12 +9,12 @@ public class ServerCommand extends CommandBase {
         super("server");
     }
 
-    public boolean execute(User user, String label, String[] args) {
+    public boolean execute(IUser user, String label, String[] args) {
         if (args.length <= 0) {
-            user.sendMessage(ChatColor.RED + "Wrong usage:");
-            user.sendMessage(ChatColor.RED + "/server <server>");
+            user.sendMessage("&cWrong usage:");
+            user.sendMessage("&c/server <server>");
         } else if (args.length == 1) {
-            user.connect(args[0]);
+            Utils.connect(user.getPlayer(), args[0]);
         }
         return true;
     }

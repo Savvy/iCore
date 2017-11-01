@@ -1,4 +1,4 @@
-package com.iskyify.core.timer;
+package com.iskyify.api.timer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
