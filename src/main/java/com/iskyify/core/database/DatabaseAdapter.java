@@ -14,17 +14,22 @@ public class DatabaseAdapter {
         coreInstance = iCore.getInstance();
     }
 
-    public JdbcTemplate get() {
-        if (jdbcTemplate == null) {
-            DriverManagerDataSource dataSource = new DriverManagerDataSource();
-            dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-            dataSource.setUrl(
-                    String.format("jdbc:mysql://%s:%s/%s", coreInstance.getConfig().getString("mysql.hostname"),
-                            coreInstance.getConfig().getString("mysql.port"), coreInstance.getConfig().getString("mysql.database")));
-            dataSource.setUsername(coreInstance.getConfig().getString("mysql.username"));
-            dataSource.setPassword(coreInstance.getConfig().getString("mysql.password"));
-            jdbcTemplate = new JdbcTemplate(dataSource);
+    public void check() {
+        if (jdbcTemplate != null) {
+            return;
         }
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl(
+                String.format("jdbc:mysql://%s:%s/%s", coreInstance.getConfig().getString("mysql.hostname"),
+                        coreInstance.getConfig().getString("mysql.port"), coreInstance.getConfig().getString("mysql.database")));
+        dataSource.setUsername(coreInstance.getConfig().getString("mysql.username"));
+        dataSource.setPassword(coreInstance.getConfig().getString("mysql.password"));
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public JdbcTemplate get() {
+        check();
         return jdbcTemplate;
     }
 
