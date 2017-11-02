@@ -3,6 +3,7 @@ package com.iskyify.core;
 import com.iskyify.core.commands.CommandBase;
 import com.iskyify.core.commands.ServerCommand;
 import com.iskyify.core.database.DatabaseAdapter;
+import com.iskyify.core.database.queries.DatabaseQueries;
 import com.iskyify.core.listeners.JoinListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -26,6 +27,8 @@ public class iCore extends JavaPlugin {
 
     private void load() {
         DatabaseAdapter.getInstance().check();
+        DatabaseAdapter.getInstance().get().update(DatabaseQueries.CREATE_USERS_TABLE.getQuery());
+        DatabaseAdapter.getInstance().get().update(DatabaseQueries.CREATE_USER_DATA_TABLE.getQuery());
         try {
             final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             bukkitCommandMap.setAccessible(true);

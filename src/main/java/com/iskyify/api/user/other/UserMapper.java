@@ -11,7 +11,8 @@ import java.util.UUID;
 public class UserMapper implements RowMapper<IUser> {
     @Override
     public IUser mapRow(ResultSet resultSet, int i) throws SQLException {
-        IUser user = new User(UUID.fromString(resultSet.getString("uuid")));
+        IUser user = new User(UUID.fromString(resultSet.getString("unique_id")));
+        user.updateLastJoin(resultSet.getLong("last_joined"));
         user.setBalance(resultSet.getDouble("balance"));
         return user;
     }

@@ -12,6 +12,8 @@ public interface IUser {
 
     void updateLastJoin();
 
+    void updateLastJoin(long update);
+
     void sendMessage(String s);
 
     Player getPlayer();
