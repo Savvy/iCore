@@ -24,6 +24,11 @@ public class User implements IUser {
     }
 
     @Override
+    public void updateLastJoin(long update) {
+        // Implement this.
+    }
+
+    @Override
     public void sendMessage(String s) {
         getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', s));
     }
