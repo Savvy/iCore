@@ -1,6 +1,9 @@
 package com.iskyify.api.user.other;
 
+import com.iskyify.api.economy.Account;
+import com.iskyify.api.economy.other.AccountAdapter;
 import com.iskyify.api.user.IUser;
+import com.iskyify.core.economy.PlayerAccount;
 import com.iskyify.core.user.User;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -14,6 +17,7 @@ public class UserMapper implements RowMapper<IUser> {
         IUser user = new User(UUID.fromString(resultSet.getString("unique_id")));
         user.updateLastJoin(resultSet.getLong("last_joined"));
         user.setBalance(resultSet.getDouble("balance"));
+        AccountAdapter.getInstance().add(new PlayerAccount(user.getUniqueId()));
         return user;
     }
 }
