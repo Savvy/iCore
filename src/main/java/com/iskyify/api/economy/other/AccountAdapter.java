@@ -1,13 +1,7 @@
 package com.iskyify.api.economy.other;
 
 import com.iskyify.api.economy.Account;
-import com.iskyify.api.user.IUser;
-import com.iskyify.api.user.other.UserAdapter;
 import lombok.Getter;
-import net.milkbowl.vault.economy.EconomyResponse;
-import org.apache.commons.lang.StringUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 
 import java.util.HashMap;
 import java.util.Map;

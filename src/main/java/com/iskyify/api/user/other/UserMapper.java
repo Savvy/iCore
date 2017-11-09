@@ -1,6 +1,5 @@
 package com.iskyify.api.user.other;
 
-import com.iskyify.api.economy.Account;
 import com.iskyify.api.economy.other.AccountAdapter;
 import com.iskyify.api.user.IUser;
 import com.iskyify.core.economy.PlayerAccount;

@@ -6,17 +6,17 @@ import java.util.UUID;
 
 public interface Account {
 
-    public boolean exists();
+    boolean exists();
 
-    public boolean create();
+    boolean create();
 
-    public boolean delete();
+    boolean delete();
 
-    public double getBalance();
+    double getBalance();
 
-    public EconomyResponse withdraw(double amount);
+    EconomyResponse withdraw(double amount);
 
-    public EconomyResponse deposit(double amount);
+    EconomyResponse deposit(double amount);
 
     UUID getUniqueId();
 }
