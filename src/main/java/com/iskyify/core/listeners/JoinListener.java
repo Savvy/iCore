@@ -1,9 +1,9 @@
 package com.iskyify.core.listeners;
 
-import com.iskyify.core.Core;
-import com.iskyify.core.event.UserUnloadEvent;
-import com.iskyify.core.event.UserLoadEvent;
-import com.iskyify.core.users.User;
+import com.iskyify.api.user.IUser;
+import com.iskyify.api.event.UserLoadEvent;
+import com.iskyify.core.iCore;
+import com.iskyify.api.user.other.UserAdapter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -14,20 +14,19 @@ public class JoinListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        UserLoadEvent loadEvent = new UserLoadEvent(event.getPlayer().getUniqueId());
+        IUser user = UserAdapter.getInstance().get(event.getPlayer().getUniqueId());
+        UserLoadEvent loadEvent = new UserLoadEvent(user);
         Bukkit.getPluginManager().callEvent(loadEvent);
         if (loadEvent.isCancelled()) {
-            event.getPlayer().kickPlayer("An error occurred while trying to load your data. Please contact an admin if this persists!");
+            event.getPlayer().kickPlayer(loadEvent.getReason().isEmpty() ? "An error occurred while trying to load your data. Please contact an admin if this persists!" : loadEvent.getReason());
             return;
         }
+        user.updateLastJoin();
 
-        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(Core.getInstance().getConfig().getString("spawn.world"))) {
-            event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), Core.getInstance().getConfig().getDouble("spawn.coords.X"), Core.getInstance().getConfig().getDouble("spawn.coords.Y"), Core.getInstance().getConfig().getDouble("spawn.coords.Z"), (float) Core.getInstance().getConfig().getInt("spawn.coords.P"), (float) Core.getInstance().getConfig().getInt("spawn.coords.YW")));
+        if (event.getPlayer().getWorld().getName().equalsIgnoreCase(iCore.getInstance().getConfig().getString("spawn.world"))) {
+            event.getPlayer().teleport(new Location(event.getPlayer().getWorld(), iCore.getInstance().getConfig().getDouble("spawn.coords.X"),
+                    iCore.getInstance().getConfig().getDouble("spawn.coords.Y"), iCore.getInstance().getConfig().getDouble("spawn.coords.Z"),
+                    (float) iCore.getInstance().getConfig().get("spawn.coords.P"), (float) iCore.getInstance().getConfig().get("spawn.coords.YW")));
         }
-
-        User user = new User(event.getPlayer().getUniqueId());
-        user.loadData();
-        UserUnloadEvent joinEvent = new UserUnloadEvent(user);
-        Bukkit.getPluginManager().callEvent(loadEvent);
     }
 }

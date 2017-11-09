@@ -1,6 +1,6 @@
-package com.iskyify.core.event;
+package com.iskyify.api.event;
 
-import com.iskyify.core.users.User;
+import com.iskyify.api.user.IUser;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.event.Cancellable;
@@ -12,21 +12,14 @@ import java.util.UUID;
 public class UserLoadEvent extends Event implements Cancellable {
 
     private static HandlerList handlerList = new HandlerList();
+    @Getter private final IUser user;
+    @Getter private UUID uniqueId;
+    @Getter private String reason;
+    @Getter @Setter private boolean cancelled;
 
-    @Getter
-    private UUID id;
-    @Getter
-    private String reason;
-    @Getter
-    @Setter
-    private boolean cancelled;
-
-    public UserLoadEvent(UUID id) {
-        this.id = id;
-    }
-
-    public UUID getUser() {
-        return id;
+    public UserLoadEvent(IUser user) {
+        this.user = user;
+        this.uniqueId = user.getUniqueId();
     }
 
     public HandlerList getHandlers() {
